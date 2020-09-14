@@ -3,7 +3,7 @@ module OFUnit(immx,branchTarget,op1,op2,opcodeI,
 	      RRF, WRF, DMop, UPC ,pc,inst,isSt,isRet,isWb,WriteData,WP);
    input RRF, WRF, DMop, UPC, isSt, isRet, isWb;
    input [31:0] inst, WriteData, pc;
-   input [3:0] 	WP;   //Write Port
+   input [4:0] 	WP;   //Write Port
 
 
    output [31:0] immx, branchTarget;
@@ -12,7 +12,7 @@ module OFUnit(immx,branchTarget,op1,op2,opcodeI,
   
 
 
-   wire [3:0] 	 RP1, RP2;
+   wire [4:0] 	 RP1, RP2;
    wire [31:0] 	 signExtend;
    
    //reg [31:0] RegisterFile[15:0];
@@ -51,8 +51,8 @@ module OFUnit(immx,branchTarget,op1,op2,opcodeI,
 //	       wen <= 1'b1;
 //	 end
 
-    assign RP1 = (isRet)?  15 : inst[21:18];
-    assign RP2 = (isSt) ? inst[25:22] : WriteEnable ? WP : inst[17:14];
+    assign RP1 = (isRet)?  31 : inst[20:16];
+    assign RP2 = (isSt) ? inst[25:21] : WriteEnable ? WP : inst[15:11];
     //assign RP2 = (isSt) ? inst[25:22] : inst[17:14]; 
            
    always @(posedge (DMop | UPC))begin
@@ -74,7 +74,7 @@ module OFUnit(immx,branchTarget,op1,op2,opcodeI,
    //imm, operands, ControlUnit: opcodeI - Opcode, I
    assign signExtend = {{5{inst[26]}}, inst[26:0]};
    assign branchTarget = pc + signExtend;
-   assign immx = {{14{inst[17]}}, inst[17:0]};
+   assign immx = {{16{inst[15]}}, inst[15:0]};
    assign opcodeI = {inst[31:27], inst[26]};
    
 endmodule // DFF

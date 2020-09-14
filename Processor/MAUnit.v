@@ -9,7 +9,7 @@ module MAUnit(
 		  );
    //Module Specific
    input[31:0]  WD;
-   input [6 : 0] RWA;
+   input [31 : 0] RWA;
    input 	isLd, isSt, DMop;
    output wire  [31:0] data;
    
