@@ -1,6 +1,6 @@
 # SimpleRISC
 Multi Staged, Non Pipelined SimpleRISC based Processor<br>
-Architecture Developed by Dr. Smruti Ranjan Sarangi.<br>
+Architecture Credits - Dr. Smruti Ranjan Sarangi, IIT Delhi.<br>
 Architecture - SimpleRISC.<br>
 Designed in Verilog.<br>
 Tested and Verified on Zybo Z10 FPGA board.<br>
